@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Web.Mvc;
 using TurismoRuralComunitario.Helpers;
@@ -13,8 +15,17 @@ namespace TurismoRuralComunitario.Controllers
 
         public ActionResult Catalogo()
         {
-           
-            return View();
+            return View(ListarCatalogo());
+        }
+
+        private List<Tour> ListarCatalogo()
+        {
+            var catalogo = db.TablaTour.ToList();
+            foreach (var item in catalogo)
+            {
+                item.Detalles = JsonSerializer.Deserialize<DetallesDelTour>(item.DescripcionTour);
+            }
+            return catalogo;
         }
 
         public ActionResult CrearTour()
