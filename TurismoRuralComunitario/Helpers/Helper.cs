@@ -9,8 +9,6 @@ namespace TurismoRuralComunitario.Helpers
 {
     public static class Helper
     {
-        public static string CORREOWEB = "vasborsas@gmail.com";
-        public static string PASSWORD = "vasbor12345";
         public static void enviarCorreo(String correoDestino, String userToken, String mensaje)
         {
             try
@@ -43,7 +41,7 @@ namespace TurismoRuralComunitario.Helpers
                 //Configuracion del SMTP
                 SmtpServer.Port = 587; //Puerto que utiliza Gmail para sus servicios
                                        //Especificamos las credenciales con las que enviaremos el mail
-                SmtpServer.Credentials = new System.Net.NetworkCredential(CORREOWEB, PASSWORD);
+                SmtpServer.Credentials = new System.Net.NetworkCredential(Constantes.CORREOWEB, Constantes.PASSWORD);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
                 mail.Dispose();

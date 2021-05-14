@@ -1,15 +1,4 @@
-﻿/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
---*/
-@charset "UTF-8";
-
-/*!
- * Bootstrap v4.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
+﻿
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -4259,6 +4248,9 @@ input[type="button"].btn-block {
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
     margin-bottom: 0;
+    background-color: var(--bg-light);
+    border: 1px solid var(--bg-light);
+    border-radius: var(--border-radius);
 }
 
 .custom-file-input {
@@ -4268,6 +4260,9 @@ input[type="button"].btn-block {
     height: calc(1.5em + 0.75rem + 2px);
     margin: 0;
     opacity: 0;
+    background-color: var(--bg-light);
+    border: 1px solid var(--bg-light);
+    border-radius: var(--border-radius);
 }
 
     .custom-file-input:focus ~ .custom-file-label {
@@ -4299,9 +4294,9 @@ input[type="button"].btn-block {
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    background-color: var(--bg-light);
+    border: 1px solid var(--bg-light);
+    border-radius: var(--border-radius);
 }
 
     .custom-file-label::after {
@@ -14099,7 +14094,6 @@ input,
 select,
 label,
 li {
-    -webkit-appearance: none;
     outline: none;
     font-family: 'Open Sans', sans-serif;
 }
@@ -14267,13 +14261,13 @@ p.white {
 
 .btn-style:hover,
 .btn-style:focus {
-    color: #fff;
+    color: var(--primary-color);
     background: var(--primary-color);
     border: 1px solid transparent;
 }
 
 .btn-style-1:hover, .btn-style-1:focus {
-    color: #fff;
+    color: var(--primary-color);
     background: var(--heading-color);
     border: 1px solid transparent;
 }
@@ -17912,6 +17906,7 @@ form.signin-form {
 }
 
 .form-inner-cont input,
+.form-inner-cont select,
 .form-inner-cont textarea {
     outline: none;
     width: 100%;
@@ -17921,7 +17916,6 @@ form.signin-form {
     color: var(--font-color);
     height: 54px;
     text-align: left;
-    -webkit-appearance: none;
     display: grid;
     grid-template-columns: .1fr 1fr;
     align-items: center;
@@ -17932,6 +17926,7 @@ form.signin-form {
 }
 
     .form-inner-cont input:focus,
+    .form-inner-cont select:focus,
     .form-inner-cont textarea:focus {
         border: 1px solid var(--primary-color);
         background-color: var(--bg-white);
@@ -18286,5 +18281,3 @@ form.signin-form {
         margin: 0 2px;
     }
 }
-
-/*# sourceMappingURL=style-freedom.css.map */

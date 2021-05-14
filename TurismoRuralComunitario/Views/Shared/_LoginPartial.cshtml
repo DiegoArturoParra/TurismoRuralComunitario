@@ -1,12 +1,14 @@
 ﻿@if (Request.IsAuthenticated)
 {
-
-<li class="nav-item justify-content-end">
-    @using (Html.BeginForm("CerrarSesion", "Cuenta", FormMethod.Post, new { id = "logoutForm" }))
-    {
-        <a class="btn btn-secondary mt-2" href="javascript:document.getElementById('logoutForm').submit()"><strong><i class="fa fa-power-off mr-3"></i>Cerrar Sesión</strong></a>
-    }
-</li>
+    <li class="nav-item">
+        <a class="nav-link" href="@Url.Action("CrearTour","Tour")"><i class="fas fa-bus-alt"></i> crear tour</a>
+    </li>
+    <li class="nav-item justify-content-end">
+        @using (Html.BeginForm("CerrarSesion", "Cuenta", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            <a class="btn btn-secondary mt-2" href="javascript:document.getElementById('logoutForm').submit()"><strong><i class="fa fa-power-off mr-3"></i>Cerrar Sesión</strong></a>
+        }
+    </li>
 }
 else
 {

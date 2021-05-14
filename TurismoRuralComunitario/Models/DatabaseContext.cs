@@ -17,6 +17,8 @@ namespace TurismoRuralComunitario.Models
         #region Dbset Tablas database context
         public DbSet<Usuario> TablaUsuarios { get; set; }
         public DbSet<Rol> TablaRoles { get; set; }
+        public DbSet<Municipio> TablaMunicipios { get; set; }
+        public DbSet<Tour> TablaTour { get; set; }
 
         #endregion
 

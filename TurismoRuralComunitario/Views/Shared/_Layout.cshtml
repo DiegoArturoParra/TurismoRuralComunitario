@@ -22,7 +22,7 @@
                     <a class="navbar-brand" href="#index.html">
                         <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
                     </a> -->
-                    <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    <button class="navbar-toggler collapsed bg-gradient" type="button" data-toggle="collapse"
                             data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                             aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
@@ -33,6 +33,17 @@
                         <ul class="navbar-nav mx-lg-auto">
                             <li class="nav-item active">
                                 <a class="nav-link" href="@Url.Action("Index","Home")">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Blog<span class="fa fa-angle-down"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                    <a class="dropdown-item" href="blog.html">Blog Posts</a>
+                                    <a class="dropdown-item" href="blog-single.html">Blog single</a>
+                                    <a class="dropdown-item" href="error.html">404 Page</a>
+                                    <a class="dropdown-item" href="landing-single.html">Landing Page</a>
+                                </div>
                             </li>
                             @Html.Partial("_LoginPartial")
                         </ul>
@@ -56,122 +67,95 @@
             </div>
         </header>
     </div>
-
     <div class="">
         @RenderBody()
-        <hr />
-        <section class="w3l-footer7">
-            <div class="footer7 py-5">
-                <div class="container py-lg-3">
-                    <div class="footer-destinations mb-5 text-center">
-                        <h5>
-                            Designing Your Exterior
-                            Dreams Into Reality!
-                        </h5>
+    </div>
+    <hr />
+    <section class="w3l-footer7">
+        <div class="footer7 py-5">
+            <div class="container py-lg-3">
+                <div class="footer-destinations mb-5 text-center">
+                    <h5>
+                        Designing Your Exterior
+                        Dreams Into Reality!
+                    </h5>
+
+                </div>
+                <div class="d-grid grid-col-3 footer-top7">
+                    <div class="footer-list7 mt-4">
+                        <h6 class="footer-title7">Quick links</h6>
+                        <ul>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="#url">Privacy & Policy</a></li>
+                            <li><a href="contact.html">Map & Location</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-list7 mt-4">
+
+                        <h6 class="footer-title7">Newsletter sign up</h6>
+                        <form action="#" method="post" class="footer-newsletter">
+                            <input type="email" name="" placeholder="Email address" required />
+                            <button class="btn btn-style">subscribe</button>
+                        </form>
 
                     </div>
-                    <div class="d-grid grid-col-3 footer-top7">
-                        <div class="footer-list7 mt-4">
-                            <h6 class="footer-title7">Quick links</h6>
-                            <ul>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="#url">Privacy & Policy</a></li>
-                                <li><a href="contact.html">Map & Location</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-list7 mt-4">
 
-                            <h6 class="footer-title7">Newsletter sign up</h6>
-                            <form action="#" method="post" class="footer-newsletter">
-                                <input type="email" name="" placeholder="Email address" required />
-                                <button class="btn btn-style">subscribe</button>
-                            </form>
-
-                        </div>
-
-                        <div class="footer-list7 mt-4">
-                            <h6 class="footer-title7">Call Us:</h6>
-                            <ul class="phone-numbers">
-                                <li><a href="tel:+123456790"> +123456790</a></li>
-                                <li><a href="tel:+123456791"> +123456791</a></li>
-                            </ul>
-                            <h6 class="footer-title7">Connect with us</h6>
-                            <div class="main-social-footer7">
-                                <a href="#url" title="Facebook" class="footer-fb">
-                                    <span class="fab fa-facebook"
-                                          aria-hidden="true"></span>
-                                </a>
-                                <a href="#url" title="Twitter" class="footer-tw">
-                                    <span class="fab fa-twitter"
-                                          aria-hidden="true"></span>
-                                </a>
-                                <a href="#url" title="Google Plus" class="footer-gg">
-                                    <span class="fab fa-google-plus"
-                                          aria-hidden="true"></span>
-                                </a>
-                                <a href="#url" title="Linkedin" class="footer-lin">
-                                    <span class="fab fa-linkedin"
-                                          aria-hidden="true"></span>
-                                </a>
-                                <a href="#url" title="Pinterest" class="footer-pin">
-                                    <span class="fab fa-pinterest"
-                                          aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="copy-right-hny text-center">
-                        <p>
-                            © 2020 Outlying. All rights reserved.Design by <a href="https://w3layouts.com/" target="_blank">
-                                W3Layouts
+                    <div class="footer-list7 mt-4">
+                        <h6 class="footer-title7">Call Us:</h6>
+                        <ul class="phone-numbers">
+                            <li><a href="tel:+123456790"> +123456790</a></li>
+                            <li><a href="tel:+123456791"> +123456791</a></li>
+                        </ul>
+                        <h6 class="footer-title7">Connect with us</h6>
+                        <div class="main-social-footer7">
+                            <a href="#url" title="Facebook" class="footer-fb">
+                                <span class="fab fa-facebook"
+                                      aria-hidden="true"></span>
                             </a>
-                        </p>
+                            <a href="#url" title="Twitter" class="footer-tw">
+                                <span class="fab fa-twitter"
+                                      aria-hidden="true"></span>
+                            </a>
+                            <a href="#url" title="Google Plus" class="footer-gg">
+                                <span class="fab fa-google-plus"
+                                      aria-hidden="true"></span>
+                            </a>
+                            <a href="#url" title="Linkedin" class="footer-lin">
+                                <span class="fab fa-linkedin"
+                                      aria-hidden="true"></span>
+                            </a>
+                            <a href="#url" title="Pinterest" class="footer-pin">
+                                <span class="fab fa-pinterest"
+                                      aria-hidden="true"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <!-- //footer -->
+                <div class="copy-right-hny text-center">
+                    <p>
+                        © 2020 Outlying. All rights reserved.Design by <a href="https://w3layouts.com/" target="_blank">
+                            W3Layouts
+                        </a>
+                    </p>
+                </div>
             </div>
+            <!-- //footer -->
             <!-- move top -->
             <button onclick="topFunction()" id="movetop" title="Go to top">
                 <i class="fas fa-chevron-circle-up text-success"></i>
             </button>
-            <script>
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function () {
-                    scrollFunction()
-                };
-
-                function scrollFunction() {
-                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                        document.getElementById("movetop").style.display = "block";
-                    } else {
-                        document.getElementById("movetop").style.display = "none";
-                    }
-                }
-
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                    document.body.scrollTop = 0;
-                    document.documentElement.scrollTop = 0;
-                }
-            </script>
-            <!-- //move top -->
-            <!-- /noscroll -->
-            <script>
-                $(function () {
-                    $('.navbar-toggler').click(function () {
-                        $('body').toggleClass('noscroll');
-                    })
-                });
-            </script>
-            <!-- //noscroll -->
-            <!-- //footer -->
-    </div>
+        </div>
     </section>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
     @RenderSection("scripts", required: false)
     <script>
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
         $(window).on("scroll", function () {
             var scroll = $(window).scrollTop();
 
@@ -251,6 +235,17 @@
                 }
             })
         })
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
 </body>
 </html>

@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
+using System.Security.Claims;
 using System.Web;
-using TurismoRuralComunitario.Helpers;
 using System.Web.Mvc;
+using TurismoRuralComunitario.Helpers;
 using TurismoRuralComunitario.Models;
 using TurismoRuralComunitario.Request;
-using Newtonsoft.Json;
-using System.Security.Claims;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
 
 namespace TurismoRuralComunitario.Controllers
 {
-    public class CuentaController : Controller
+    public class CuentaController : BaseController
     {
         private DatabaseContext db = new DatabaseContext();
 
@@ -63,8 +62,8 @@ namespace TurismoRuralComunitario.Controllers
                 }
                 else
                 {
-                    TempData["alerta"] = "alert alert-danger";
-                    TempData["mensaje"] = "Contraseña y/o email invalido.";
+                    SetAlert(Constantes.ALERT_ERROR);
+                    SetMessage("Contraseña y/o email invalido.");
                     return RedirectToAction("Login");
                 }
 
@@ -90,13 +89,13 @@ namespace TurismoRuralComunitario.Controllers
                 {
                     if (existecedula)
                     {
-                        TempData["alerta"] = "alert alert-danger";
-                        TempData["mensaje"] = "Cédula ya registrada.";
+                        SetAlert(Constantes.ALERT_ERROR);
+                        SetMessage("Cédula ya registrada..");
                     }
                     else
                     {
-                        TempData["alerta"] = "alert alert-danger";
-                        TempData["mensaje"] = "Email ya registrado.";
+                        SetAlert(Constantes.ALERT_ERROR);
+                        SetMessage("Email ya registrado.");
                     }
                     return RedirectToAction("Registrarse");
                 }
@@ -104,8 +103,8 @@ namespace TurismoRuralComunitario.Controllers
                 usuario.RolId = (int)Rol.Roles.Cliente;
                 db.TablaUsuarios.Add(usuario);
                 db.SaveChanges();
-                TempData["alerta"] = "alert alert-success";
-                TempData["mensaje"] = "Registro satisfactoriamente.";
+                SetAlert(Constantes.ALERT_SUCCESS);
+                SetMessage("Registro satisfactoriamente.");
                 return RedirectToAction("Login");
             }
 
@@ -142,14 +141,14 @@ namespace TurismoRuralComunitario.Controllers
                     {
                         throw ex;
                     }
-                    TempData["alerta"] = "alert alert-success";
-                    TempData["mensaje"] = "Revise su bandeja de su correo eléctronico.";
+                    SetAlert(Constantes.ALERT_SUCCESS);
+                    SetMessage("Revise su bandeja de su correo eléctronico.");
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    TempData["alerta"] = "alert alert-danger";
-                    TempData["mensaje"] = "No hay ningún usuario con ese email.";
+                    SetAlert(Constantes.ALERT_ERROR);
+                    SetMessage("No hay ningún usuario con ese email.");
                     return RedirectToAction("RecuperarContraseña");
                 }
             }
@@ -176,7 +175,7 @@ namespace TurismoRuralComunitario.Controllers
             return RedirectToAction("Login");
         }
 
-      
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -202,8 +201,8 @@ namespace TurismoRuralComunitario.Controllers
                         {
                             throw ex;
                         }
-                        TempData["alerta"] = "alert alert-success";
-                        TempData["mensaje"] = "Su contraseña se ha cambiado satisfactoriamente.";
+                        SetAlert(Constantes.ALERT_SUCCESS);
+                        SetMessage("Su contraseña se ha cambiado satisfactoriamente..");
                         return RedirectToAction("Login");
                     }
                 }

@@ -21,6 +21,7 @@ namespace TurismoRuralComunitario
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/theme-change.js",
+                        "~/Scripts/umd/popper.js",
                          "~/Scripts/owl.carousel.js",
                       "~/Scripts/bootstrap.js"));
 
