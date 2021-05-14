@@ -15,8 +15,6 @@ namespace TurismoRuralComunitario.Models
         {
             this.Detalles = new DetallesDelTour();
         }
-        private string _pathImagen;
-
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -37,15 +35,8 @@ namespace TurismoRuralComunitario.Models
 
         [Column("path_imagen")]
         [Display(Name = "Imagen")]
-        public string PathImagen
-        {
-            get => _pathImagen;
-            set
-            {
-                _pathImagen = string.IsNullOrWhiteSpace(_pathImagen) ? Constantes.PATH_IMAGENES_TOURS + "defaultMunicipio.png" : _pathImagen;
-            }
+        public string PathImagen { get; set; }
 
-        }
         [Column("descripcion_tour")]
         public string DescripcionTour { get; set; }
 

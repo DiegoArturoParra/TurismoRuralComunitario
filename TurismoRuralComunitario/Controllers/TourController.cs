@@ -50,6 +50,7 @@ namespace TurismoRuralComunitario.Controllers
                 }
                 json = JsonSerializer.Serialize(tour.Detalles);
                 tour.DescripcionTour = json;
+                tour.MunicipioId = (int)Municipios.Facatativa;
                 db.TablaTour.Add(tour);
                 db.SaveChanges();
                 return Redirect("Catalogo");
