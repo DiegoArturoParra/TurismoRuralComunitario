@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="error py-5">
+    <div class="container py-lg-5 py-md-4">
+        <div class="w3l-error">
+            <div class="error-block text-center">
+                <h4>@ViewBag.StatusCode</h4>
+                <h5>@ViewBag.Title</h5>
+                <p>@ViewBag.Description</p>
+                <div class="button btn"><a href="@Url.Action("Index","Home")" class="btn btn-style-1 btn-secondary">Ir a home</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+nj
