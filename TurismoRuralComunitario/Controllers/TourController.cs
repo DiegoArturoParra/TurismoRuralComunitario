@@ -16,6 +16,8 @@ namespace TurismoRuralComunitario.Controllers
         private List<Tour> catalogoTours = new List<Tour>();
         private DatabaseContext db = new DatabaseContext();
 
+        #region catalogo tours
+
         public async Task<ActionResult> Catalogo()
         {
             return View(await ListarCatalogo());
@@ -42,7 +44,9 @@ namespace TurismoRuralComunitario.Controllers
             return catalogoTours;
         }
 
+        #endregion
 
+        #region Detalles del tour
         public async Task<ActionResult> Detalle(int? id)
         {
             if (id == null)
@@ -61,7 +65,10 @@ namespace TurismoRuralComunitario.Controllers
             return View(tour);
         }
 
-
+        #endregion
+        
+        #region crear
+        [Authorize(Roles = Constantes.ADMIN + "," + Constantes.ADMINMUNICIPAL)]
         public ActionResult Crear()
         {
             listaCantidadHabitaciones();
@@ -108,7 +115,11 @@ namespace TurismoRuralComunitario.Controllers
             return View(tour);
         }
 
-        #region Editar producto
+        #endregion
+
+        #region Editar
+
+        [Authorize(Roles = Constantes.ADMIN + "," + Constantes.ADMINMUNICIPAL)]
         public async Task<ActionResult> Editar(int? id)
         {
             if (id == null)
@@ -151,6 +162,8 @@ namespace TurismoRuralComunitario.Controllers
         }
         #endregion
 
+        #region Eliminar
+        [Authorize(Roles = Constantes.ADMIN + "," + Constantes.ADMINMUNICIPAL)]
         public async Task<ActionResult> Eliminar(int id)
         {
             var tour = db.TablaTour.Find(id);
@@ -162,5 +175,6 @@ namespace TurismoRuralComunitario.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Catalogo");
         }
+#endregion
     }
 }

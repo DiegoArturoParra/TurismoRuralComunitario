@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TurismoRuralComunitario.Models;
 
 namespace TurismoRuralComunitario.Helpers
 {
@@ -13,6 +14,11 @@ namespace TurismoRuralComunitario.Helpers
         public static string ALERT_ERROR = "alert alert-danger";
         public static string ALERT = "alerta";
         public static string ERROR = "Error";
+        public const string ADMIN = "SuperAdministrador";
+        public const string ADMINMUNICIPAL = "AdministradorMunicipal";
+        public const string GUIA = "Guia";
+        public const string PROPIETARIO = "Propietario";
+        public const string CLIENTE = "Cliente";
         #endregion
 
         #region Variables APPLICACION
