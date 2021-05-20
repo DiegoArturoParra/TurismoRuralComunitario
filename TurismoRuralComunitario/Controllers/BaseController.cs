@@ -1,7 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TurismoRuralComunitario.Helpers;
@@ -75,5 +79,35 @@ namespace TurismoRuralComunitario.Controllers
         }
 
         #endregion
+
+        #region guardar claims
+        public void GuardarCookies(string email, string rol, int id)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Role, rol),
+                new Claim(ClaimTypes.NameIdentifier, id.ToString())
+            };
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            var context = Request.GetOwinContext();
+            var authManager = context.Authentication;
+            authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
+        }
+        #endregion
+
+        #region Obtener ObtenerIdxClaim
+        public int ObtenerIdxClaim()
+        {
+            var claimsIdentity = (ClaimsIdentity)Thread.CurrentPrincipal.Identity;
+            var id = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            return id != null ? int.Parse(id.Value) : default;
+        }
+        #endregion
+
+        public string ConcatenarPath(string ruta,  string nombre, string extension)
+        {
+            return $"{ruta}{nombre}{DateTime.Now.Minute}{DateTime.Now.Second}{DateTime.Now.Millisecond}{extension}";
+        }
     }
 }

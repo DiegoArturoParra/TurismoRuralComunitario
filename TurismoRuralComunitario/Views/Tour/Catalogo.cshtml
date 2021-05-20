@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TurismoRuralComunitario.Models.Tour>
+@using TurismoRuralComunitario.Models
 @{
     ViewBag.Title = "Creación de tour";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,11 +14,9 @@
             </div>
             @if (Model.Count() == 0)
             {
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 product-men women_two">
-                        <div class="alert alert-info justify-content-center" role="alert">
-                            <strong>No hay productos en stock por el momento.</strong>
-                        </div>
+                <div class="row justify-content-center">
+                    <div class="alert alert-info justify-content-center" role="alert">
+                        <strong>No hay productos en stock por el momento.</strong>
                     </div>
                 </div>
             }
@@ -28,7 +27,7 @@
                     <div class="pricing11-content">
                         <div class="column pricing-grid">
                             <div class="rate mb-2">
-                                <h4><span class="text-center"></span>@item.NombreSitio</h4>
+                                <h3><span class="text-center mb-2"></span>@item.NombreSitio</h3>
                             </div>
                             <div class="text-center price-icon">
                                 @if (!string.IsNullOrEmpty(item.PathImagen))
@@ -42,12 +41,25 @@
                             </div>
                             <div class="rate mb-2">
                                 <h4>Precio:</h4>
-                                <h5><span class="top-align"></span>$@item.Precio</h5>
+                                <h5><span class="top-align"></span>@Html.DisplayFor(modelItem => item.Precio)</h5>
                             </div>
-                           
                             <div class="text-center">
-                                <a href="#" class="btn btn-secondary btn-lg btn-block">Ver más</a>
+                                <a href="@Url.Action("Detalle","Tour", new { id = item.Id})" class="btn btn-secondary btn-lg btn-block">Ver más</a>
                             </div>
+                            @if (Request.IsAuthenticated)
+                            {
+                                if (User.IsInRole(Rol.Roles.SuperAdministrador.ToString()) || User.IsInRole(Rol.Roles.AdministradorMunicipal.ToString()))
+                                {
+                                    <div class="row justify-content-between mt-4">
+                                        <div class="col">
+                                            <a href="@Url.Action("Editar",new { id = item.Id})" class="btn btn-info btn-sm btn-block text-white"><i class="fa fa-edit mr-2"></i>Editar</a>
+                                        </div>
+                                        <div class="col">
+                                            <a onclick="eliminar(@item.Id)" class="btn btn-danger btn-sm btn-block text-white"><i class="fa fa-trash mr-2"></i>Eliminar</a>
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                 }
@@ -56,4 +68,30 @@
         </div>
     </div>
 </section>
+
+@section scripts{
+    <script type="text/javascript">
+        var success = '<i class="mr-2 fa fa-check-circle"></i>';
+        var error = '<i class="mr-2 fa fa-times-circle"> </i>';
+        $(function () {
+            var mensaje = '@TempData[TurismoRuralComunitario.Helpers.Constantes.MESSAGE]'
+            if (mensaje != '') {
+                if (mensaje.indexOf("existe") > -1) {
+                    alertify.error(error+mensaje);
+                }
+                else {
+                    alertify.success(success+mensaje);
+                }
+            }
+        });
+        function eliminar(id) {
+            alertify.confirm('Eliminando', '¿Esta seguro de eliminar este tour?',
+                function () {
+                    window.location.href = '@Url.Action("Eliminar", "Tour")/' + id;
+                }, function () {
+                    alertify.error('Cancelado');
+            }).set('labels', { ok: 'Ok', cancel: 'Cancelar' });
+        }
+    </script>
+}
 

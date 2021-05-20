@@ -10,17 +10,12 @@ namespace TurismoRuralComunitario.Models
     [Table("tour", Schema = "tours")]
     public class Tour
     {
-
-        public Tour()
-        {
-            this.Detalles = new DetallesDelTour();
-        }
         [Key]
         [Column("id")]
         public int Id { get; set; }
 
         [Column("municipio_id")]
-        public int MunicipioId { get; set; }
+        public int? MunicipioId { get; set; }
 
         [Column("nombre_del_sitio")]
         [Display(Name = "Nombre del tour")]
@@ -45,7 +40,11 @@ namespace TurismoRuralComunitario.Models
         public HttpPostedFileBase Imagen { get; set; }
 
         [NotMapped]
-        public DetallesDelTour Detalles { get; set; }
+        [Display(Name = "Municipio")]
+        public string Municipio { get; set; }
+
+        [NotMapped]
+        public DetallesDelTour Detalles { get; set; } = new DetallesDelTour();
         public class ValidImageFileAttribute : ValidationAttribute
         {
             public override bool IsValid(object value)

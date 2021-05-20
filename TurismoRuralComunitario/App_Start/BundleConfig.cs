@@ -23,11 +23,14 @@ namespace TurismoRuralComunitario
                         "~/Scripts/theme-change.js",
                         "~/Scripts/umd/popper.js",
                          "~/Scripts/owl.carousel.js",
+                          "~/Scripts/alertify.js",
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/all.css",
+                      "~/Content/alertifyjs/alertify.min.css",
+                      "~/Content/alertifyjs/themes/default.min.css",
                       "~/Content/site.css"));
         }
     }

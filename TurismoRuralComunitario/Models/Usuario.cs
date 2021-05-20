@@ -35,6 +35,10 @@ namespace TurismoRuralComunitario.Models
         [ScaffoldColumn(false)]
         public int RolId { get; set; }
 
+        [Column("municipio_id")]
+        [ScaffoldColumn(false)]
+        public int? MunicipioId { get; set; }
+
         [Column("token")]
         [ScaffoldColumn(false)]
         public string Token { get; set; }

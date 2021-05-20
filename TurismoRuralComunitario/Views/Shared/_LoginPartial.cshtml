@@ -1,7 +1,7 @@
 ﻿@if (Request.IsAuthenticated)
 {
     <li class="nav-item">
-        <a class="nav-link" href="@Url.Action("CrearTour","Tour")"><i class="fas fa-bus-alt"></i> crear tour</a>
+        <a class="nav-link" href="@Url.Action("Crear","Tour")"><i class="fas fa-bus-alt"></i> crear tour</a>
     </li>
     <li class="nav-item justify-content-end">
         @using (Html.BeginForm("CerrarSesion", "Cuenta", FormMethod.Post, new { id = "logoutForm" }))

@@ -36,15 +36,14 @@ namespace TurismoRuralComunitario.Controllers
                 if (existe != null)
                 {
                     string rol = db.TablaRoles.Where(x => x.Id == existe.RolId).Select(x => x.TipoRol).FirstOrDefault();
-                    GuardarCookies(existe.Email, rol);
+                    GuardarCookies(existe.Email, rol, existe.Id);
                     if (existe.RolId == (int)Rol.Roles.AdministradorMunicipal)
                     {
-                        // redirigir al controlador y vista que desea
-                        // return RedirectToAction("Administrador", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     else if (existe.RolId == (int)Rol.Roles.SuperAdministrador)
                     {
-                        return RedirectToAction("Administrador", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     else if (existe.RolId == (int)Rol.Roles.Cliente)
                     {
@@ -52,11 +51,11 @@ namespace TurismoRuralComunitario.Controllers
                     }
                     else if (existe.RolId == (int)Rol.Roles.Propietario)
                     {
-                        //return RedirectToAction("Administrador", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
                     else if (existe.RolId == (int)Rol.Roles.Guia)
                     {
-                        //return RedirectToAction("Administrador", "Home");
+                        return RedirectToAction("Index", "Home");
                     }
 
                 }
@@ -252,19 +251,5 @@ namespace TurismoRuralComunitario.Controllers
             return db.TablaUsuarios.Where(x => x.Token.Equals(token)).FirstOrDefault();
         }
 
-
-
-        private void GuardarCookies(string email, string rol)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Email, email),
-                new Claim(ClaimTypes.Role, rol),
-            };
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-            var context = Request.GetOwinContext();
-            var authManager = context.Authentication;
-            authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
-        }
     }
 }

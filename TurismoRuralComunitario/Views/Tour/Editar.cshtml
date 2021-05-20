@@ -1,0 +1,121 @@
+﻿@model TurismoRuralComunitario.Models.Tour
+@{
+    ViewBag.Title = "Creación de tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>@ViewBag.Title</title>
+@using (Html.BeginForm("EditarAsync", "Tour", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.PathImagen)
+    @Html.HiddenFor(model => model.MunicipioId)
+    <section class="w3l-contact-11 py-5">
+        <div class="container">
+            <a href="@Url.Action("Catalogo")" class="btn btn-style-1 mb-3"><i class="fas fa-arrow-alt-circle-left mr-2"></i><strong>Cancelar</strong></a>
+        </div>
+        <div class="contacts-main py-lg-5 py-md-4">
+            <div class="title-content text-center">
+                <h6 class="sub-title">Editar</h6>
+                <h3 class="hny-title">Tour</h3>
+            </div>
+        </div>
+        <div class="form-41-mian section-gap mt-5" id="DatosRespuesta">
+            <div class="container">
+                <div class="d-grid align-form-map">
+                    <div class="form-inner-cont">
+                        <form class="signin-form">
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.NombreSitio)</strong>
+                                @Html.ValidationMessageFor(model => model.NombreSitio, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.NombreSitio)
+                            </div>
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.Precio)</strong>
+                                @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Precio)
+                            </div>
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.Detalles.RegistroNacionalDeTurismo)</strong>
+                                @Html.ValidationMessageFor(model => model.Detalles.RegistroNacionalDeTurismo, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.Detalles.RegistroNacionalDeTurismo)
+                            </div>
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.Detalles.Caracteristicas)</strong>
+                                @Html.ValidationMessageFor(model => model.Detalles.Caracteristicas, "", new { @class = "text-danger" })
+                                @Html.TextAreaFor(model => model.Detalles.Caracteristicas)
+                            </div>
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.Detalles.TotalHabitaciones)</strong>
+                                @Html.ValidationMessageFor(model => model.Detalles.TotalHabitaciones, "", new { @class = "text-danger" })
+                                @Html.DropDownListFor(x => x.Detalles.TotalHabitaciones, ViewBag.DDL_CantidadHabitaciones as SelectList, "Seleccione total de habitaciones")
+
+                            </div>
+
+
+                            <div class="form-input">
+                                <strong>@Html.LabelFor(model => model.PathImagen)</strong>
+                                @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+                                <div class="custom-file">
+                                    @Html.TextBoxFor(model => model.Imagen, htmlAttributes: new { @class = "custom-file-input", @lang = "es", @type = "file", @accept = "image/png,image/jpg,image/bmp,image/gif,image/jpeg" })
+                                    <label class="custom-file-label" for="validatedCustomFile">
+                                        <i class="fa fa-file-image mr-4"></i><strong>Seleccionar archivo....</strong>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-submit text-center mt-4">
+                                <button type="submit" class="btn btn-info btn-lg"><i class="fa fa-edit mr-2"></i>Editar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col align-self-center text-center mb-5">
+                        <br />
+                        @if (!string.IsNullOrEmpty(Model.PathImagen))
+                        {
+                            <img id="imagenmuestra" src="@Url.Content(Model.PathImagen)" class="img-fluid rounded" width="450" height="450" />
+                        }
+                        else
+                        {
+                            <img id="imagenmuestra" src="~/Recursos/imgTours/defaultMunicipio.png" class="img-fluid rounded" width="450" height="450" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        $('input[type=file]').change(function () {
+            var val = $(this).val().toLowerCase(),
+                regex = new RegExp("(.*?)\.(jpeg|jpg|png)$");
+
+            if (!(regex.test(val))) {
+                $(this).val();
+                alert("Ingrese un archivo valido de imagen");
+            }
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    // Asignamos el atributo src a la tag de imagen
+                    $('#imagenmuestra').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        // El listener va asignado al input
+        $("#Imagen").change(function () {
+            readURL(this);
+        });
+    </script>
+}
+

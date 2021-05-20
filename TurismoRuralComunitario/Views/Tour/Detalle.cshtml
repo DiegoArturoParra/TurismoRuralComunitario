@@ -1,0 +1,58 @@
+﻿@model TurismoRuralComunitario.Models.Tour
+@{
+    ViewBag.Title = "Detalles del tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="w3l-index5" id="about">
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.MunicipioId)
+    <div class="new-block py-5">
+        <div class="container py-lg-5">
+            <a href="@Url.Action("Catalogo")" class="btn btn-style-1 mb-3"><i class="fas fa-arrow-alt-circle-left"></i></a>
+
+            <div class="middle-section">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="section-width">
+                            <h6 class="sub-title text-center">Descripción</h6>
+                            <h3 class="hny-title text-center">@Html.DisplayFor(model => model.NombreSitio)</h3>
+                            <p class="mt-3 text-justify mb-3">
+                                <a class="mr-2">Contiene:</a>@Html.DisplayFor(model => model.Detalles.Caracteristicas)
+                            </p>
+                            <h5 class="mb-3">
+                                <a class="mr-2"><i class="fas fa-money-bill-wave mr-3"></i>Precio:</a>
+                                @Html.DisplayFor(model => model.Precio)
+                            </h5>
+                            <h5 class="mb-3">
+                                <a class="mr-2"><i class="fas fa-map-marker mr-3"></i>Municipio:</a>
+                                @Html.DisplayFor(model => model.Municipio)
+                            </h5>
+                            <h5 class="mb-3">
+                                <a class="mr-2"><i class="fas fa-clipboard mr-3"></i>Registro nacional del turismo:</a>
+                                @Html.DisplayFor(model => model.Detalles.RegistroNacionalDeTurismo)
+                            </h5>
+                            <h5 class="mb-3">
+                                <a class="mr-2"><i class="fas fa-bed mr-3"></i>Habitaciones:</a>
+                                @Html.DisplayFor(model => model.Detalles.TotalHabitaciones)
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="col align-self-center text-center mb-5">
+                        <div class="position-relative">
+                            @if (!string.IsNullOrEmpty(Model.PathImagen))
+                            {
+                                <img id="imagenmuestra" src="@Url.Content(Model.PathImagen)" class="img-fluid img-thumbnail" width="600" height="600" />
+                            }
+                            else
+                            {
+                                <img id="imagenmuestra" src="~/Recursos/imgTours/defaultMunicipio.png" class="img-fluid img-thumbnail" width="600" height="600" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
