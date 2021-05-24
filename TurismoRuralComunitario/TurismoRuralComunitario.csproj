@@ -238,6 +238,7 @@
     <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
+    <Content Include="DB\dbturismorc.sql" />
     <Content Include="Imagenes\banner1.jpg" />
     <Content Include="Imagenes\banner2.jpg" />
     <Content Include="Imagenes\banner3.jpg" />

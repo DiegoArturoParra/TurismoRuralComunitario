@@ -22,9 +22,10 @@
             }
             else
             {
-                foreach (var item in Model)
-                {
-                    <div class="pricing11-content">
+                <div class="pricing11-content">
+                    @foreach (var item in Model)
+                    {
+
                         <div class="column pricing-grid">
                             <div class="rate mb-2">
                                 <h3><span class="text-center mb-2"></span>@item.NombreSitio</h3>
@@ -61,8 +62,9 @@
                                 }
                             }
                         </div>
-                    </div>
-                }
+
+                    }
+                </div>
             }
 
         </div>

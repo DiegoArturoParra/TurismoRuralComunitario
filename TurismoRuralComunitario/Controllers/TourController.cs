@@ -71,11 +71,11 @@ namespace TurismoRuralComunitario.Controllers
         [Authorize(Roles = Constantes.ADMIN + "," + Constantes.ADMINMUNICIPAL)]
         public ActionResult Crear()
         {
-            listaCantidadHabitaciones();
+            ListaCantidadHabitaciones();
             return View();
         }
 
-        private void listaCantidadHabitaciones()
+        private void ListaCantidadHabitaciones()
         {
             List<int> habitaciones = new List<int>()
             {
@@ -111,7 +111,7 @@ namespace TurismoRuralComunitario.Controllers
                 return Redirect("Catalogo");
             }
 
-            listaCantidadHabitaciones();
+            ListaCantidadHabitaciones();
             return View(tour);
         }
 
@@ -134,7 +134,7 @@ namespace TurismoRuralComunitario.Controllers
                 return Redirect("Catalogo");
             }
             tourEdit.Detalles = JsonSerializer.Deserialize<DetallesDelTour>(tourEdit.DescripcionTour);
-            listaCantidadHabitaciones();
+            ListaCantidadHabitaciones();
             return View(tourEdit);
         }
 
